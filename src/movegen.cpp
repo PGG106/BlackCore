@@ -197,15 +197,12 @@ Move *generatePawnMoves(const Position &pos, Move *moves, Square king, Bitboard 
     // Check if there are any pawns that can be promoted
     if (pawnsBeforePromo) {
 
-        // Generate quiet moves
-        if constexpr (!capturesOnly) {
-            // Filter out all the legal promotions upwards
-            Bitboard upPromo = step<UP>(pawnsBeforePromo & moveH) & empty & checkMask;
+        // Filter out all the legal promotions upwards
+        Bitboard upPromo = step<UP>(pawnsBeforePromo & moveH) & empty & checkMask;
 
-            while (upPromo) {
-                Square to = upPromo.popLsb();
-                moves = makePromo(moves, to + DOWN, to);
-            }
+        while (upPromo) {
+            Square to = upPromo.popLsb();
+            moves = makePromo(moves, to + DOWN, to);
         }
 
         // Filter out all the legal sideways capture-promotions
