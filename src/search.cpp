@@ -216,7 +216,7 @@ Score quiescence(Position &pos, ThreadData &td, SearchStack *stack, Score alpha,
          *
          * If the move loses material we skip its evaluation
          */
-        if (bestScore > TB_BEST_LOSS && !see(pos, move, 0))
+        if (bestScore > TB_BEST_LOSS && !see(pos, move, -108))
             continue;
 
         td.nodes++; // Update total number of nodes searched
